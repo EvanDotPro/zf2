@@ -4,7 +4,9 @@ namespace Zend\JsonRpc;
 
 use Zend\Stdlib\Dispatchable,
     Zend\EventManager\EventCollection,
-    Zend\EventManager\EventManager;
+    Zend\EventManager\EventManager,
+    Zend\Stdlib\RequestDescription as Request,
+    Zend\Stdlib\ResponseDescription as Response;
 
 class Server implements Dispatchable
 {
@@ -53,7 +55,7 @@ class Server implements Dispatchable
         //$events->attach('dispatch', array($this, 'execute'));
     }
 
-    public function dipatch(Request $request, Response $response =  null)
+    public function dispatch(Request $request, Response $response =  null)
     {
         $result = $this->events()->trigger('dispatch');
     }

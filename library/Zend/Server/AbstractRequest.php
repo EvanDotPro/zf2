@@ -37,15 +37,6 @@ abstract class AbstractRequest extends StdRequest
     }
 
     /**
-     * toString to be implemented by extending classes 
-     *
-     * Converts request to a string
-     * 
-     * @return string
-     */
-    abstract public function toString();
-
-    /**
      * __toString magic method 
      * 
      * @return string

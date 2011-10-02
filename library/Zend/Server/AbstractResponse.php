@@ -37,15 +37,6 @@ abstract class AbstractResponse extends StdResponse
     }
 
     /**
-     * toString to be implemented by extending classes 
-     *
-     * Converts response to a string
-     * 
-     * @return string
-     */
-    abstract public function toString();
-
-    /**
      * __toString magic method 
      * 
      * @return string
