@@ -43,6 +43,6 @@ abstract class AbstractResponse extends StdResponse
      */
     public function __toString()
     {
-        $this->toString();
+        return $this->toString();
     }
 }

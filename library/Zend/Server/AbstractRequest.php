@@ -43,6 +43,6 @@ abstract class AbstractRequest extends StdRequest
      */
     public function __toString()
     {
-        $this->toString();
+        return $this->toString();
     }
 }
