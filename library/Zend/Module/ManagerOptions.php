@@ -20,6 +20,11 @@ class ManagerOptions
     /**
      * @var string
      */
+    protected $cacheKey = NULL;
+
+    /**
+     * @var string
+     */
     protected $manifestDir = NULL;
 
     /**
@@ -53,7 +58,7 @@ class ManagerOptions
      * Set if the config cache should be enabled or not
      *
      * @param bool $enabled
-     * @return ManagerConfig
+     * @return ManagerOptions
      */
     public function setEnableConfigCache($enabled)
     {
@@ -75,7 +80,7 @@ class ManagerOptions
      * Set the path where cache files can be stored
      *
      * @param string $cacheDir the value to be set
-     * @return ManagerConfig
+     * @return ManagerOptions
      */
     public function setCacheDir($cacheDir)
     {
@@ -84,6 +89,29 @@ class ManagerOptions
         } else {
             $this->cacheDir = static::normalizePath($cacheDir);
         }
+        return $this;
+    }
+
+    /**
+     * Get key used to create the cache file name
+     *
+     * @return string
+     */
+    public function getCacheKey() {
+        if ($this->cacheKey !== null) {
+            return $this->cacheKey;
+        }
+        return $this->getApplicationEnv();
+    }
+
+    /**
+     * Set key used to create the cache file name
+     *
+     * @param string $cacheKey the value to be set
+     * @return ManagerOptions
+     */
+    public function setCacheKey($cacheKey) {
+        $this->cacheKey = $cacheKey;
         return $this;
     }
 
@@ -101,7 +129,7 @@ class ManagerOptions
      * Set manifestDir.
      *
      * @param string $manifestDir the value to be set
-     * @return ManagerConfig
+     * @return ManagerOptions
      */
     public function setManifestDir($manifestDir)
     {
@@ -123,7 +151,7 @@ class ManagerOptions
      */
     public function getCacheFilePath()
     {
-        return $this->getCacheDir() . '/module-config-cache.'.$this->getApplicationEnv().'.php';
+        return $this->getCacheDir() . '/module-config-cache.'.$this->getCacheKey().'.php';
     }
 
     /**
