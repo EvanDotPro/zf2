@@ -27,6 +27,11 @@ class ListenerOptions extends Options
     protected $applicationEnvironment;
 
     /**
+     * @var bool
+     */
+    protected $dependencyCheckEnabled = false;
+
+    /**
      * Check if the config cache is enabled
      *
      * @return bool
@@ -144,5 +149,26 @@ class ListenerOptions extends Options
         $path = rtrim($path, '/');
         $path = rtrim($path, '\\');
         return $path;
+    }
+ 
+    /**
+     * Check if the dependency check is enabled.
+     *
+     * @return bool
+     */
+    public function getDependencyCheckEnabled()
+    {
+        return $this->dependencyCheckEnabled;
+    }
+ 
+    /**
+     * Set if the DependencyListener should be attached and used.
+     *
+     * @param bool $dependencyCheckEnabled
+     */
+    public function setDependencyCheckEnabled($dependencyCheckEnabled)
+    {
+        $this->dependencyCheckEnabled = $dependencyCheckEnabled;
+        return $this;
     }
 }

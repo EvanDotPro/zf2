@@ -6,6 +6,7 @@ use Traversable,
     Zend\Module\Listener\ListenerOptions,
     Zend\Module\Listener\AutoloaderListener,
     Zend\Module\Listener\ConfigListener,
+    Zend\Module\Listener\DependencyListener,
     Zend\Module\Listener\InitTrigger,
     Zend\Module\Listener\ConfigMerger,
     Zend\EventManager\EventCollection,
@@ -264,6 +265,9 @@ class Manager implements ModuleHandler
         $options = $this->getDefaultListenerOptions();
         if (null === $this->getConfigListener(false)) {
             $this->setConfigListener(new ConfigListener($options));
+        }
+        if ($options->getDependencyCheckEnabled()) {
+            $this->events()->attach('loadModule', new DependencyListener($options), 1000);
         }
         $this->events()->attach('loadModule', new InitTrigger($options), 1000);
         $this->events()->attach('loadModule', $this->getConfigListener(), 1000);
