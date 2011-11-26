@@ -6,6 +6,7 @@ use Zend\Module\ModuleEvent,
     Zend\Module\Consumer\Depends,
     Zend\Module\Consumer\Provides,
     Zend\Module\Listener\DependencyListener\Provision,
+    Zend\Module\Listener\DependencyListener\Dependency,
     Zend\Module\Listener\Exception\RuntimeException,
     Zend\Module\Listener\Exception\InvalidArgumentException,
     Zend\Version as ZfVersion;
@@ -26,6 +27,13 @@ class DependencyListener extends AbstractListener
      * @var array
      */
     protected $provisions = array();
+
+    /**
+     * dependencies 
+     * 
+     * @var array
+     */
+    protected $dependencies = array();
 
     /**
      * regex for getting version operators
@@ -59,14 +67,24 @@ class DependencyListener extends AbstractListener
                     $provision = strtolower($provisionName);
                     if (isset($this->provisions[$provision])) {
                         throw new RuntimeException(sprintf(
-                            'Duplicate provision error: %s'
-                        ), $provision);
+                            'Duplicate provision error: %s',
+                        $provision));
                     }
                     $this->provisions[$provision] = new Provision($provisionName, $version);
                     $this->provisions[$provision]->setProvider($module);
                 }
             }
+            if ($module instanceof Depends) {
+                foreach ($module->getDependencies() as $dependencyName => $version) {
+                    $dependency = strtolower($dependencyName);
+                    if (!isset($this->dependencies[$dependency])) {
+                        $this->dependencies[$dependency] = new Dependency($dependencyName);
+                    }
+                    $this->dependencies[$dependency]->addDependant($module, $version);
+                }
+            }
         }
+        $unsatisfied = array_diff_key($this->dependencies, $this->provisions);
         // check dependencies
     }
 
