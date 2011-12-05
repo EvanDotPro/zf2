@@ -35,7 +35,7 @@ class ListenerOptions extends Options
     {
         return $this->configCacheEnabled;
     }
- 
+
     /**
      * Set if the config cache should be enabled or not
      *
@@ -53,7 +53,7 @@ class ListenerOptions extends Options
      *
      * @return string
      */
-    public function getConfigCacheKey() 
+    public function getConfigCacheKey()
     {
         if ($this->configCacheKey !== null) {
             return $this->configCacheKey;
@@ -67,16 +67,16 @@ class ListenerOptions extends Options
      * @param string $configCacheKey the value to be set
      * @return ManagerOptions
      */
-    public function setConfigCacheKey($configCacheKey) 
+    public function setConfigCacheKey($configCacheKey)
     {
         $this->configCacheKey = $configCacheKey;
         return $this;
     }
 
     /**
-     * Get the path to the config cache 
-     * 
-     * Should this be an option, or should the dir option include the 
+     * Get the path to the config cache
+     *
+     * Should this be an option, or should the dir option include the
      * filename, or should it simply remain hard-coded? Thoughts?
      *
      * @return string
@@ -95,7 +95,7 @@ class ListenerOptions extends Options
     {
         return $this->cacheDir;
     }
- 
+
     /**
      * Set the path where cache files can be stored
      *
@@ -121,7 +121,7 @@ class ListenerOptions extends Options
     {
         return $this->applicationEnvironment ?: 'production';
     }
- 
+
     /**
      * Set the application environment to use
      *
@@ -135,8 +135,8 @@ class ListenerOptions extends Options
 
     /**
      * Normalize a path for insertion in the stack
-     * 
-     * @param  string $path 
+     *
+     * @param  string $path
      * @return string
      */
     public static function normalizePath($path)

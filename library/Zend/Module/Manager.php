@@ -24,8 +24,8 @@ class Manager implements ModuleHandler
     protected $events;
 
     /**
-     * modules 
-     * 
+     * modules
+     *
      * @var array|Traversable
      */
     protected $modules = array();
@@ -38,30 +38,30 @@ class Manager implements ModuleHandler
     protected $modulesAreLoaded = false;
 
     /**
-     * Config listener 
-     * 
+     * Config listener
+     *
      * @var mixed
      */
     protected $configListener;
 
     /**
-     * If true, will not register the default config/init listeners 
-     * 
+     * If true, will not register the default config/init listeners
+     *
      * @var bool
      */
     protected $disableLoadDefaultListeners = false;
 
     /**
-     * Options for the default listeners 
-     * 
+     * Options for the default listeners
+     *
      * @var ListenerOptions
      */
     protected $defaultListenerOptions;
 
     /**
-     * __construct 
-     * 
-     * @param array|Traversable $modules 
+     * __construct
+     *
+     * @param array|Traversable $modules
      * @return void
      */
     public function __construct($modules)
@@ -71,7 +71,7 @@ class Manager implements ModuleHandler
 
     /**
      * Load the provided modules.
-     * 
+     *
      * @return ManagerHandler
      */
     public function loadModules()
@@ -92,8 +92,8 @@ class Manager implements ModuleHandler
 
     /**
      * Load a specific module by name.
-     * 
-     * @param string $moduleName 
+     *
+     * @param string $moduleName
      * @return mixed Module's Module class
      */
     public function loadModule($moduleName)
@@ -103,14 +103,14 @@ class Manager implements ModuleHandler
         }
 
         $class = $moduleName . '\Module';
-        
+
         if (!class_exists($class)) {
             throw new Exception\RuntimeException(sprintf(
                 'Module (%s) could not be initialized because Module.php could not be found.',
                 $moduleName
             ));
         }
-        
+
         $module = new $class;
         $event  = new ModuleEvent();
         $event->setModule($module);
@@ -142,9 +142,9 @@ class Manager implements ModuleHandler
     {
         return $this->modules;
     }
- 
+
     /**
-     * Set an array or Traversable of module names that this module manager should load. 
+     * Set an array or Traversable of module names that this module manager should load.
      *
      * @param mixed $modules array or Traversable of module names
      * @return ModuleHandler
@@ -161,11 +161,11 @@ class Manager implements ModuleHandler
         }
         return $this;
     }
-    
+
     /**
      * Get the listener that's in charge of merging module configs.
      *
-     * @param bool $autoInstantiate 
+     * @param bool $autoInstantiate
      * @return ConfigMerger
      */
     public function getConfigListener($autoInstantiate = true)
@@ -175,7 +175,7 @@ class Manager implements ModuleHandler
         }
         return $this->configListener;
     }
- 
+
     /**
      * Set the listener that's in charge of merging module configs.
      *
@@ -192,8 +192,8 @@ class Manager implements ModuleHandler
      * A convenience method that proxies through to:
      *
      * $this->getConfigListener()->getMergedConfig($returnConfigAsObject);
-     * 
-     * @param bool $returnConfigAsObject 
+     *
+     * @param bool $returnConfigAsObject
      * @return mixed
      */
     public function getMergedConfig($returnConfigAsObject = true)
@@ -203,8 +203,8 @@ class Manager implements ModuleHandler
 
     /**
      * Set the event manager instance used by this module manager.
-     * 
-     * @param  EventCollection $events 
+     *
+     * @param  EventCollection $events
      * @return ManagerHandler
      */
     public function setEventManager(EventCollection $events)
@@ -217,7 +217,7 @@ class Manager implements ModuleHandler
      * Retrieve the event manager
      *
      * Lazy-loads an EventManager instance if none registered.
-     * 
+     *
      * @return EventCollection
      */
     public function events()
@@ -231,8 +231,8 @@ class Manager implements ModuleHandler
 
     /**
      * Set if the default listeners should be registered or not
-     * 
-     * @param bool $flag 
+     *
+     * @param bool $flag
      * @return Manager
      */
     public function setDisableLoadDefaultListeners($flag)
@@ -243,7 +243,7 @@ class Manager implements ModuleHandler
 
     /**
      * Return if the default listeners are disabled or not
-     * 
+     *
      * @return bool
      */
     public function loadDefaultListenersIsDisabled()
@@ -253,7 +253,7 @@ class Manager implements ModuleHandler
 
     /**
      * Internal method for attaching the default listeners
-     * 
+     *
      * @return Manager
      */
     protected function setDefaultListeners()
@@ -270,7 +270,7 @@ class Manager implements ModuleHandler
         $this->events()->attach('loadModule', new AutoloaderListener($options), 2000); // Should be called before init
         return $this;
     }
- 
+
     /**
      * Get the options for the default module listeners.
      *
@@ -283,7 +283,7 @@ class Manager implements ModuleHandler
         }
         return $this->defaultListenerOptions;
     }
- 
+
     /**
      * Set the options for the default module listeners.
      *
@@ -295,5 +295,5 @@ class Manager implements ModuleHandler
         $this->defaultListenerOptions = $defaultListenerOptions;
         return $this;
     }
- 
+
 }
