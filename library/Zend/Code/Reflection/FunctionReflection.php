@@ -82,7 +82,7 @@ class FunctionReflection extends ReflectionFunction implements Reflection
             array_splice(
                 file($this->getFileName()),
                 $this->getStartLine($includeDocblock),
-                ($this->getEndLine() - $this->getStartLine()),
+                ($this->getEndLine() - $this->getStartLine($includeDocblock)),
                 true
                 )
             );

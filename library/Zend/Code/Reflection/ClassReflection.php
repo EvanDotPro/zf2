@@ -126,7 +126,7 @@ class ClassReflection extends ReflectionClass implements Reflection
         $filename  = $this->getFileName();
         $filelines = file($filename);
         $startnum  = $this->getStartLine($includeDocblock);
-        $endnum    = $this->getEndLine() - $this->getStartLine();
+        $endnum    = $this->getEndLine() - $this->getStartLine($includeDocblock);
 
         return implode('', array_splice($filelines, $startnum, $endnum, true));
     }

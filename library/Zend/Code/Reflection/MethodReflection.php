@@ -143,7 +143,7 @@ class MethodReflection extends PhpReflectionMethod implements Reflection
     {
         $fileContents = file($this->getFileName());
         $startNum = $this->getStartLine($includeDocblock);
-        $endNum = ($this->getEndLine() - $this->getStartLine());
+        $endNum = ($this->getEndLine() - $this->getStartLine($includeDocblock));
 
         return implode("\n", array_splice($fileContents, $startNum, $endNum, true));
     }
