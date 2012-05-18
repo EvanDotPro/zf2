@@ -199,7 +199,8 @@ class PluginBroker implements Broker, ServiceLocatorAwareInterface
             }
         }
 
-        if ($locator && $locator->has($class)) {
+        // Bad, bad, bad hack for diagnostic purposes ONLY. Do not commit this.
+        if ($locator && substr($class, 0, 4) !== 'Zend') {
             if (!empty($options) && $this->isAssocArray($options)) {
                 // This might be inconsistent with what $options should be?
                 $instance = $locator->get($class, $options);
