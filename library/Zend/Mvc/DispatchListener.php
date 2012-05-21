@@ -101,12 +101,10 @@ class DispatchListener implements ListenerAggregateInterface
         $wasLoaded = false;
         $exception = false;
         try {
-            try {
-                $controller = $controllerLoader->get($controllerName);
-                $wasLoaded  = true;
-            } catch (ServiceNotFoundException $exception) {
-                $wasLoaded =false;
-            }
+            $controller = $controllerLoader->get($controllerName);
+            $wasLoaded  = true;
+        } catch (ServiceNotFoundException $exception) {
+            $wasLoaded =false;
         } catch (ServiceNotCreatedException $exception) {
             $error = clone $e;
             $error->setError($application::ERROR_EXCEPTION)
