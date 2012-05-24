@@ -24,7 +24,7 @@ class InformationSchemaMetadata implements MetadataInterface
 
     /**
      *
-     * @var Adapter 
+     * @var Adapter
      */
     protected $adapter = null;
 
@@ -42,8 +42,8 @@ class InformationSchemaMetadata implements MetadataInterface
 
     /**
      * Constructor
-     * 
-     * @param Adapter $adapter 
+     *
+     * @param Adapter $adapter
      */
     public function __construct(Adapter $adapter)
     {
@@ -53,7 +53,7 @@ class InformationSchemaMetadata implements MetadataInterface
 
     /**
      * Get schemas
-     * 
+     *
      */
     public function getSchemas()
     {
@@ -62,10 +62,10 @@ class InformationSchemaMetadata implements MetadataInterface
 
     /**
      * Get table names
-     * 
+     *
      * @param  string $schema
      * @param  string $database
-     * @return array 
+     * @return array
      */
     public function getTableNames($schema = null)
     {
@@ -104,10 +104,10 @@ class InformationSchemaMetadata implements MetadataInterface
 
     /**
      * Get tables
-     * 
+     *
      * @param  string $schema
      * @param  string $database
-     * @return array 
+     * @return array
      */
     public function getTables($schema = null)
     {
@@ -126,11 +126,11 @@ class InformationSchemaMetadata implements MetadataInterface
 
     /**
      * Get table
-     * 
+     *
      * @param  string $tableName
      * @param  string $schema
      * @param  string $database
-     * @return Object\TableObject 
+     * @return Object\TableObject
      */
     public function getTable($tableName, $schema = null)
     {
@@ -147,9 +147,9 @@ class InformationSchemaMetadata implements MetadataInterface
 
     /**
      * Get view names
-     * 
+     *
      * @param string $schema
-     * @param string $database 
+     * @param string $database
      */
     public function getViewNames($schema = null)
     {
@@ -158,9 +158,9 @@ class InformationSchemaMetadata implements MetadataInterface
 
     /**
      * Get views
-     * 
+     *
      * @param string $schema
-     * @param string $database 
+     * @param string $database
      */
     public function getViews($schema = null)
     {
@@ -169,10 +169,10 @@ class InformationSchemaMetadata implements MetadataInterface
 
     /**
      * Get view
-     * 
+     *
      * @param string $viewName
      * @param string $schema
-     * @param string $database 
+     * @param string $database
      */
     public function getView($viewName, $schema = null)
     {
@@ -181,11 +181,11 @@ class InformationSchemaMetadata implements MetadataInterface
 
     /**
      * Gt column names
-     * 
+     *
      * @param  string $table
      * @param  string $schema
      * @param  string $database
-     * @return array 
+     * @return array
      */
     public function getColumnNames($table, $schema = null)
     {
@@ -208,11 +208,11 @@ class InformationSchemaMetadata implements MetadataInterface
 
     /**
      * Get columns
-     * 
+     *
      * @param  string $table
      * @param  string $schema
      * @param  string $database
-     * @return array 
+     * @return array
      */
     public function getColumns($table, $schema = null)
     {
@@ -235,12 +235,12 @@ class InformationSchemaMetadata implements MetadataInterface
 
     /**
      * Get column
-     * 
+     *
      * @param  string $columnName
      * @param  string $table
      * @param  string $schema
      * @param  string $database
-     * @return Object\ColumnObject 
+     * @return Object\ColumnObject
      */
     public function getColumn($columnName, $table, $schema = null)
     {
@@ -285,11 +285,11 @@ class InformationSchemaMetadata implements MetadataInterface
 
     /**
      * Get constraints
-     * 
+     *
      * @param  string $table
      * @param  string $schema
      * @param  string $database
-     * @return array 
+     * @return array
      */
     public function getConstraints($table, $schema = null)
     {
@@ -315,12 +315,12 @@ class InformationSchemaMetadata implements MetadataInterface
 
     /**
      * Get constraint
-     * 
+     *
      * @param  string $constraintName
      * @param  string $table
      * @param  string $schema
      * @param  string $database
-     * @return Object\ConstraintObject 
+     * @return Object\ConstraintObject
      */
     public function getConstraint($constraintName, $table, $schema = null)
     {
@@ -354,12 +354,12 @@ class InformationSchemaMetadata implements MetadataInterface
 
     /**
      * Get constraint keys
-     * 
+     *
      * @param  string $constraint
      * @param  string $table
      * @param  string $schema
      * @param  string $database
-     * @return Object\ConstraintKeyObject 
+     * @return Object\ConstraintKeyObject
      */
     public function getConstraintKeys($constraint, $table, $schema = null)
     {
@@ -401,9 +401,9 @@ class InformationSchemaMetadata implements MetadataInterface
 
     /**
      * Get trigger names
-     * 
+     *
      * @param string $schema
-     * @param string $database 
+     * @param string $database
      */
     public function getTriggerNames($schema = null)
     {
@@ -412,9 +412,9 @@ class InformationSchemaMetadata implements MetadataInterface
 
     /**
      * Get triggers
-     * 
+     *
      * @param string $schema
-     * @param string $database 
+     * @param string $database
      */
     public function getTriggers($schema = null)
     {
@@ -423,10 +423,10 @@ class InformationSchemaMetadata implements MetadataInterface
 
     /**
      * Get trigger
-     * 
+     *
      * @param string $triggerName
      * @param string $schema
-     * @param string $database 
+     * @param string $database
      */
     public function getTrigger($triggerName, $schema = null)
     {
@@ -435,9 +435,9 @@ class InformationSchemaMetadata implements MetadataInterface
 
     /**
      * Load column data
-     * 
+     *
      * @param string $schema
-     * @param string $database 
+     * @param string $database
      */
     protected function loadColumnData($schema, $database)
     {
@@ -491,9 +491,9 @@ class InformationSchemaMetadata implements MetadataInterface
 
     /**
      * Load constraint data
-     * 
+     *
      * @param string $schema
-     * @param string $database 
+     * @param string $database
      */
     protected function loadConstraintData($schema, $database)
     {
@@ -504,9 +504,9 @@ class InformationSchemaMetadata implements MetadataInterface
 
     /**
      * Load constraint data names
-     * 
+     *
      * @param string $schema
-     * @param string $database 
+     * @param string $database
      */
     protected function loadConstraintDataNames($schema, $database)
     {
@@ -545,9 +545,9 @@ class InformationSchemaMetadata implements MetadataInterface
 
     /**
      * Load constraint data keys
-     * 
+     *
      * @param string $schema
-     * @param string $database 
+     * @param string $database
      */
     protected function loadConstraintDataKeys($schema, $database)
     {
@@ -590,10 +590,10 @@ class InformationSchemaMetadata implements MetadataInterface
 
     /**
      * Load constraint references
-     * 
+     *
      * @param  string $schema
      * @param  string $database
-     * @return type 
+     * @return type
      */
     protected function loadConstraintReferences($schema, $database)
     {
@@ -652,10 +652,10 @@ class InformationSchemaMetadata implements MetadataInterface
 
     /**
      * Prepare data heirarchy
-     * 
+     *
      * @param string $database
      * @param string $schema
-     * @param array $rest 
+     * @param array $rest
      */
     protected function prepareDataHeirarchy($database, $schema, array $rest)
     {
