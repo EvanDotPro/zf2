@@ -20,17 +20,9 @@
  */
 
 namespace ZendTest\Validator;
+
 use Zend\Validator,
     ReflectionClass;
-
-/**
- * Test helper
- */
-
-/**
- * @see Zend_Validator_Regex
- */
-
 
 /**
  * @category   Zend
@@ -111,25 +103,37 @@ class RegexTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @ZF-11863
+     * @dataProvider specialCharValidationProvider
      */
-    public function testSpecialCharValidation()
+    public function testSpecialCharValidation($expected, $input)
     {
-        /**
-         * The elements of each array are, in order:
-         *      - pattern
-         *      - expected validation result
-         *      - array of test input values
-         */
-        $valuesExpected = array(
-            array('/^[[:alpha:]\']+$/iu', true, array('test', 'òèùtestòò', 'testà', 'teààst', 'ààòòìùéé', 'èùòìiieeà')),
-            array('/^[[:alpha:]\']+$/iu', false, array('test99'))
-            );
-        foreach ($valuesExpected as $element) {
-            $validator = new Validator\Regex($element[0]);
-            foreach ($element[2] as $input) {
-                $this->assertEquals($element[1], $validator->isValid($input));
-            }
+        // Skip test due a bug https://bugs.php.net/bug.php?id=52971
+        if (version_compare(PHP_VERSION, '5.3.4', '<')) {
+            $this->markTestIncomplete('Test skipped due a bug with this PHP version (https://bugs.php.net/bug.php?id=52971)');
         }
+
+        setlocale(LC_ALL, 'C');
+        $validator = new Validator\Regex('/^[[:alpha:]\']+$/iu');
+        $this->assertEquals($expected, $validator->isValid($input),
+                            'Reason: ' . implode('', $validator->getMessages()));
+    }
+
+    /**
+     * The elements of each array are, in order:
+     *      - expected validation result
+     *      - test input value
+     */
+    public function specialCharValidationProvider()
+    {
+        return array(
+            array(true, 'test'),
+            array(true, 'òèùtestòò'),
+            array(true, 'testà'),
+            array(true, 'teààst'),
+            array(true, 'ààòòìùéé'),
+            array(true, 'èùòìiieeà'),
+            array(false, 'test99'),
+        );
     }
     
     public function testEqualsMessageTemplates()
