@@ -369,7 +369,7 @@ class FormInputTest extends CommonTestCase
     {
         return array(
             array('XHTML11'),
-            array('XHTML_RDFA1'),
+            array('XHTML1_RDFA'),
             array('XHTML1_STRICT'),
             array('XHTML1_TRANSITIONAL'),
             array('XHTML1_FRAMESET'),
